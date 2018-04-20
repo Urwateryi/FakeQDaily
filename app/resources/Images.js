@@ -1,5 +1,6 @@
 /**
- * Description:图片管理类
+ * Description:图片管理
+ * Author: zoe
  * 为了区分图片，此处按照不同的功能板块将图片分类
  */
 export default {

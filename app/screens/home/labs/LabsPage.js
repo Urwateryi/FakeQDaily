@@ -11,12 +11,15 @@ import {
     Text,
 } from 'react-native';
 import Colors from "../../../resources/Colors";
+import LabsHorizontal from "./LabsHorizontal";
+import LabsItem from "./LabsItem";
 
 export default class LabsPage extends PureComponent {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.text}>Page2</Text>
+                <LabsItem/>
+                <LabsHorizontal/>
             </View>
         );
     }

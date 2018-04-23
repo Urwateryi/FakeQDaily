@@ -32,5 +32,10 @@ export default {
         ic_share_press:require('./imgs/ic_share_press.png'),
         ic_favor_normal:require('./imgs/ic_favor_normal.png'),
         ic_favor_press:require('./imgs/ic_favor_press.png'),
+
+        ic_join_news:require('./imgs/ic_join_news.png'),
+    },
+    test:{
+        beauty:require('./imgs/bg.jpg'),
     }
 }

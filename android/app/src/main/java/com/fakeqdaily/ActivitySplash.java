@@ -28,7 +28,9 @@ public class ActivitySplash {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        mSplashDialog.dismiss();
-        mSplashDialog = null;
+        if(mSplashDialog!=null){
+        	mSplashDialog.dismiss();
+            mSplashDialog = null;
+        }
     }
 }

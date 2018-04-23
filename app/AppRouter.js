@@ -7,6 +7,7 @@
 import React, { PureComponent } from "react";
 import {
     Router,
+    Actions,
     Scene
 } from 'react-native-router-flux';
 import {
@@ -16,19 +17,10 @@ import Colors from "./resources/Colors";
 import Page1 from "./screens/home/Page1";
 import Page2 from "./screens/home/Page2";
 
-export default class AppRouter extends PureComponent{
+export default class AppRouter extends PureComponent {
     render() {
         return (
-            <Router getSceneStyle={getSceneStyle}>
-                <Scene hideNavBar key="root" tabs
-                       tabBarStyle={styles.tabBarStyle}
-                       labelStyle={styles.routerFluxLabelStyle}
-                       activeTintColor={Colors.primary}
-                       inactiveTintColor={Colors.gray}>
-                    <Scene key="Page1" hideNavBar component={Page1}/>
-                    <Scene key="Page2" hideNavBar component={Page2}/>
-                </Scene>
-            </Router>
+            <Router getSceneStyle={getSceneStyle} scenes={scenes}/>
         );
     }
 }
@@ -60,4 +52,15 @@ const styles = StyleSheet.create({
         height : 45,
         backgroundColor : 'white'
     }
-})
+});
+
+const scenes = Actions.create(
+    <Scene hideNavBar key="root" tabs
+           tabBarStyle={styles.tabBarStyle}
+           labelStyle={styles.routerFluxLabelStyle}
+           activeTintColor={Colors.primary}
+           inactiveTintColor={Colors.gray}>
+        <Scene key="NewsPage" title="NEWS" hideNavBar component={Page1}/>
+        <Scene key="LabsPage" title="LABS" hideNavBar component={Page2}/>
+    </Scene>
+);

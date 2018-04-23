@@ -8,7 +8,13 @@ import React, { PureComponent } from "react";
 import {
     Router,
     Scene
-} from 'react-native-router-flux'
+} from 'react-native-router-flux';
+import {
+    StyleSheet,
+} from 'react-native';
+import Colors from "./resources/Colors";
+import Page1 from "./screens/home/Page1";
+import Page2 from "./screens/home/Page2";
 
 export default class AppRouter extends PureComponent{
     render() {
@@ -19,8 +25,8 @@ export default class AppRouter extends PureComponent{
                        labelStyle={styles.routerFluxLabelStyle}
                        activeTintColor={Colors.primary}
                        inactiveTintColor={Colors.gray}>
-                    <Scene key="Page1" component={Page1}/>
-                    <Scene key="Page2" component={Page2}/>
+                    <Scene key="Page1" hideNavBar component={Page1}/>
+                    <Scene key="Page2" hideNavBar component={Page2}/>
                 </Scene>
             </Router>
         );

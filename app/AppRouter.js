@@ -14,8 +14,8 @@ import {
     StyleSheet,
 } from 'react-native';
 import Colors from "./resources/Colors";
-import Page1 from "./screens/home/Page1";
-import Page2 from "./screens/home/Page2";
+import NewsPage from "./screens/home/news/NewsPage";
+import LabsPage from "./screens/home/labs/LabsPage";
 
 export default class AppRouter extends PureComponent {
     render() {
@@ -44,7 +44,9 @@ const styles = StyleSheet.create({
     routerFluxLabelStyle : {
         marginTop : 5,
         textAlign : 'center',
-        fontSize : 15
+        fontSize : 15,
+        fontFamily:'monospace',
+        fontWeight:'100'
     }, tabBarStyle : {
         justifyContent : "center",
         alignItems : "center",
@@ -54,13 +56,14 @@ const styles = StyleSheet.create({
     }
 });
 
+//各个界面
 const scenes = Actions.create(
     <Scene hideNavBar key="root" tabs
            tabBarStyle={styles.tabBarStyle}
            labelStyle={styles.routerFluxLabelStyle}
-           activeTintColor={Colors.primary}
+           activeTintColor='black'
            inactiveTintColor={Colors.gray}>
-        <Scene key="NewsPage" title="NEWS" hideNavBar component={Page1}/>
-        <Scene key="LabsPage" title="LABS" hideNavBar component={Page2}/>
+        <Scene key="NewsPage" title="NEWS" hideNavBar component={NewsPage}/>
+        <Scene key="LabsPage" title="LABS" hideNavBar component={LabsPage}/>
     </Scene>
 );

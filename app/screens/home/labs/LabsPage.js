@@ -10,9 +10,9 @@ import {
     View,
     Text,
 } from 'react-native';
-import Colors from "../../resources/Colors";
+import Colors from "../../../resources/Colors";
 
-export default class Page2 extends PureComponent {
+export default class LabsPage extends PureComponent {
     render() {
         return (
             <View style={styles.container}>

@@ -4,7 +4,7 @@
  * Author: zoe
  * Time: 2018/4/23 0023
  */
-import React, {PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 import {
     View,
     StyleSheet,
@@ -16,7 +16,7 @@ export default class LabsHorizontal extends PureComponent {
         // 数组
         var itemAry = [];
         // 颜色数组
-        var colorAry = [ 'green', 'blue', 'yellow', 'black', 'orange', 'white', 'pink' ];
+        var colorAry = [ 'green', 'blue', 'yellow', 'black', 'orange', 'red', 'pink' ];
         // 遍历
         for (var i = 0;
             i < colorAry.length;
@@ -32,19 +32,29 @@ export default class LabsHorizontal extends PureComponent {
         return (
             <View>
                 <ScrollView
+                    style={styles.itemBg}
+                    showsHorizontalScrollIndicator={false}
                     horizontal={true}>
-                    {this.renderItemH()}
+                    {
+                        this.renderItemH()
+                    }
                 </ScrollView>
             </View>
         );
     }
 }
 
-const styles=StyleSheet.create({
+const styles = StyleSheet.create({
+    itemBg:{
+        backgroundColor:'white',
+        paddingTop:25,
+        paddingBottom:25,
+        paddingRight:20
+    },
     itemStyle : {
         // 尺寸
         width : 300,
         height : 150,
-        marginLeft:20,
+        marginLeft : 20,
     }
 })

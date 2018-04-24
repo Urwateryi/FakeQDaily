@@ -13,18 +13,20 @@ import {
 import Colors from "../../../resources/Colors";
 import NewsBanner from "./NewsBanner";
 import Images from "../../../resources/Images";
+import NewHeadline from "./NewHeadline";
+import NewsItemHeader from "./NewsItemHeader";
 
 const datas = [
     {
-        "icon" : Images.menu.ic_menu_about,
+        "icon" : Images.test.test_1,
         "title" : "你那一笑倾国倾城"
     },
     {
-        "icon" : Images.menu.ic_menu_category,
+        "icon" : Images.test.test_2,
         "title" : "那里记录了最唯美的爱情故事"
     },
     {
-        "icon" : Images.menu.ic_menu_close_x,
+        "icon" : Images.test.test_3,
         "title" : "我怎么是一个剩女"
     }
 ]
@@ -34,6 +36,8 @@ export default class NewsPage extends PureComponent {
         return (
             <View style={styles.container}>
                 <NewsBanner imgData={datas}/>
+                <NewHeadline/>
+                <NewsItemHeader/>
             </View>
         );
     }

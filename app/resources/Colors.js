@@ -8,5 +8,6 @@ export default {
     primary: '#ffc81f',
     border: '#eeeeee',
     bg: '#f2f2f2',
-    trans_gray:'#22444444'
+    trans_gray:'#22444444',
+    light_gray:'#cccccc'
 }

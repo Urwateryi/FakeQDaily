@@ -19,7 +19,7 @@ export default class LabsPage extends PureComponent {
         return (
             <View style={styles.container}>
                 <LabsItem/>
-                <LabsHorizontal/>
+                <LabsHorizontal style={{marginTop:10}}/>
             </View>
         );
     }
@@ -29,9 +29,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',//当前容器使用什么布局
-        justifyContent: 'space-around',//定制主轴
-        alignItems: 'stretch',//定制副轴
-        alignContent: 'flex-start',
         backgroundColor: Colors.bg,
     },text:{
         fontSize: 50,

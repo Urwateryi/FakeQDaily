@@ -33,9 +33,12 @@ export default {
         ic_favor_normal:require('./imgs/ic_favor_normal.png'),
         ic_favor_press:require('./imgs/ic_favor_press.png'),
 
-        ic_join_news:require('./imgs/ic_join_news.png'),
+        ic_join_news:require('./imgs/ic_menu_home.png'),
     },
     test:{
-        beauty:require('./imgs/bg.jpg'),
+        beauty:require('./imgs/test_bg.jpg'),
+        test_1:require('./imgs/test_1.jpg'),
+        test_2:require('./imgs/test_2.jpg'),
+        test_3:require('./imgs/test_3.jpg'),
     }
 }

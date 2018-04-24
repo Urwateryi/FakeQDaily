@@ -78,7 +78,7 @@ export default class NewsBanner extends PureComponent {
                 <Image
                     key={i}
                     source={imgData[i].icon}
-                    style={{width: width, height: 180}}
+                    style={{width: width, height: 220}}
                 />
             )
         }

@@ -15,6 +15,7 @@ import NewsBanner from "./NewsBanner";
 import Images from "../../../resources/Images";
 import NewHeadline from "./NewHeadline";
 import NewsItemHeader from "./NewsItemHeader";
+import FeedsItem from "./FeedsItem";
 
 const datas = [
     {
@@ -36,8 +37,7 @@ export default class NewsPage extends PureComponent {
         return (
             <View style={styles.container}>
                 <NewsBanner imgData={datas}/>
-                <NewHeadline/>
-                <NewsItemHeader/>
+                <FeedsItem/>
             </View>
         );
     }

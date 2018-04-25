@@ -14,8 +14,8 @@ export default class NewsItemHeader extends PureComponent {
             <View style={styles.container}>
                 <Image style={styles.img} source={Images.menu.ic_menu_about}/>
                 <Text style={styles.title}>这个设计了不起</Text>
-                <Image style={[styles.img,{ marginRight : 15}]} source={Images.menu.ic_menu_home}/>
-                <Image style={styles.img} source={Images.menu.ic_menu_column}/>
+                <Image style={[styles.img,{ marginRight : 15}]} source={Images.item.ic_new}/>
+                <Image style={styles.img} source={Images.item.ic_login}/>
             </View>
         )
     }

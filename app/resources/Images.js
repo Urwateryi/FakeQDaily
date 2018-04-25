@@ -10,10 +10,10 @@ export default {
     },
 
     menu:{
-        ic_menu_setting:require('./imgs/ic_menu_setting.png'),
-        ic_menu_night_state:require('./imgs/ic_menu_night_state.png'),
-        ic_menu_offline:require('./imgs/ic_menu_offline.png'),
-        ic_menu_recomend:require('./imgs/ic_menu_recomend.png'),
+        ic_menu_setting:require('./imgs/ic_setting.png'),
+        ic_menu_night_state:require('./imgs/ic_night_state.png'),
+        ic_menu_offline:require('./imgs/ic_offline.png'),
+        ic_menu_recomend:require('./imgs/ic_recomend.png'),
 
         ic_menu_about:require('./imgs/ic_menu_about.png'),
         ic_menu_category:require('./imgs/ic_menu_category.png'),
@@ -26,12 +26,13 @@ export default {
     },
 
     item:{
-        ic_comment_normal:require('./imgs/ic_comment_normal.png'),
-        ic_comment_press:require('./imgs/ic_comment_press.png'),
-        ic_share_normal:require('./imgs/ic_share_normal.png'),
-        ic_share_press:require('./imgs/ic_share_press.png'),
-        ic_favor_normal:require('./imgs/ic_favor_normal.png'),
-        ic_favor_press:require('./imgs/ic_favor_press.png'),
+        ic_comment_normal:require('./imgs/ic_comment.png'),
+        ic_share_normal:require('./imgs/ic_share.png'),
+        ic_favor_normal:require('./imgs/ic_not_favor.png'),
+        ic_favor_press:require('./imgs/ic_favor.png'),
+
+        ic_login:require('./imgs/ic_login.png'),
+        ic_new:require('./imgs/ic_new.png'),
 
         ic_join_news:require('./imgs/ic_menu_home.png'),
     },

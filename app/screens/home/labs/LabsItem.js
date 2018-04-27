@@ -16,6 +16,15 @@ import labsItemStyles from "../../../resources/styles/LabsItem"
 import ItemMore from "../../../components/ItemMore";
 
 export default class LabsItem extends PureComponent {
+
+    //构造函数
+    constructor(props) {
+        super(props);
+        this.state = {
+
+        };
+    }
+
     render() {
         return (
             <View style={labsItemStyles.container}>

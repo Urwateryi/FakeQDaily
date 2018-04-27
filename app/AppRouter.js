@@ -16,6 +16,7 @@ import {
 import Colors from "./resources/Colors";
 import NewsPage from "./screens/home/news/NewsPage";
 import LabsPage from "./screens/home/labs/LabsPage";
+import TestFetch from "./screens/home/TestFetch";
 
 export default class AppRouter extends PureComponent {
     render() {
@@ -65,5 +66,6 @@ const scenes = Actions.create(
            inactiveTintColor={Colors.gray}>
         <Scene key="NewsPage" title="NEWS" hideNavBar component={NewsPage}/>
         <Scene key="LabsPage" title="LABS" hideNavBar component={LabsPage}/>
+        <Scene key="TestFetch" title="FETCH" hideNavBar component={TestFetch}/>
     </Scene>
 );

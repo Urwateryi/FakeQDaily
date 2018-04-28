@@ -15,20 +15,24 @@ import Images from "../../../resources/Images";
 import labsItemStyles from "../../../resources/styles/LabsItem"
 import ItemMore from "../../../components/ItemMore";
 
-export default class LabsItem extends PureComponent {
-
-    //构造函数
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        };
-    }
+export default class LabsItem extends PureComponent  {
 
     render() {
+        let item=this.props.data;
+
+        console.info("///////////////",item)
+
+        console.log(item.post)
+
+        let image=item.post.image;
+        let title = item.post.title;
+        let description = item.post.description;
+
+        console.log('title:'+title)
+        console.log('description:'+description)
         return (
             <View style={labsItemStyles.container}>
-                <ImageBackground style={labsItemStyles.img} source={Images.test.beauty} resizeMode='cover'>
+                <ImageBackground style={labsItemStyles.img} source={{uri:image}} resizeMode='cover'>
                     <Image
                         style={labsItemStyles.join}
                         source={Images.item.ic_join_news}
@@ -38,12 +42,12 @@ export default class LabsItem extends PureComponent {
 
                 <View style={labsItemStyles.titleBg}>
                     <Text style={labsItemStyles.title} numberOfLines={2}>
-                        理想状况下，你觉得一个即将踏入社会的人最应该知道哪些东西你觉得一个即将踏入社会的人最应该知道哪些东西？
+                        {title}
                     </Text>
                 </View>
 
                 <Text style={labsItemStyles.bref}>
-                    人们常常抱怨还没准备好就从象牙塔里出来了，究竟怎样才算准备好了，一个人进入公共生活钱应该具备哪些基本的储备？（题图来自：istock）
+                    {description}
                 </Text>
 
                 <ItemMore/>

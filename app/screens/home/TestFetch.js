@@ -6,9 +6,12 @@
  */
 
 import React, { PureComponent } from 'react';
-import { View, Text, StyleSheet } from "react-native";
+import { FlatList, ImageBackground, View, Image, Text, StyleSheet } from "react-native";
 import NetUtil from "../../utils/NetUtil";
 import Api from "../../network/Api";
+import Images from "../../resources/Images";
+import labsItemStyles from "../../resources/styles/LabsItem";
+import ItemMore from "../../components/ItemMore";
 import LabsItem from "./labs/LabsItem";
 
 const MAX_RESULT = 20;//每页最大记录数
@@ -66,7 +69,8 @@ export default class TestFetch extends PureComponent {
 
     //此函数用于为给定的item生成一个不重复的key
     //不设置这个的话，会报这个警告：Each child in an array or iterator should have a unique "key" prop.
-    _keyExtractor = (item) => item.post.id;
+
+    _keyExtractor = (item) => item.post.id.toString();
 
     /**
      * 下啦刷新
@@ -101,7 +105,7 @@ export default class TestFetch extends PureComponent {
 
     renderItem = ({ item }) => {
         return (
-            <LabsItem />
+            <LabsItem data={item}/>
         )
     }
 
@@ -137,11 +141,3 @@ export default class TestFetch extends PureComponent {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container : {
-        flex : 1,
-        padding : 10,
-        backgroundColor : 'white'
-    }
-});

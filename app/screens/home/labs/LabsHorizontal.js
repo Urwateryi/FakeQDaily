@@ -8,21 +8,34 @@ import React, { PureComponent } from 'react';
 import {
     View,
     StyleSheet,
-    ScrollView
+    ScrollView,
+    ToastAndroid,
+    Text,
+    ImageBackground,
+    TouchableOpacity
 } from 'react-native';
 
 export default class LabsHorizontal extends PureComponent {
+
+    click(id) {
+        ToastAndroid.show(id + "", ToastAndroid.SHORT)
+    }
+
     renderItemH() {
-        // 数组
-        var itemAry = [];
-        // 颜色数组
-        var colorAry = [ 'green', 'blue', 'yellow', 'black', 'orange', 'red', 'pink' ];
-        // 遍历
-        for (var i = 0;
-            i < colorAry.length;
+        console.log("data:", this.props.data)
+
+        let itemAry = [];
+        for (let i = 0;
+            i < this.props.data.length;
             i++) {
+            let img = this.props.data[ i ].image;
             itemAry.push(
-                <View key={i} style={[ styles.itemStyle, { backgroundColor : colorAry[ i ] } ]}></View>
+                <TouchableOpacity activeOpacity={0.5} onPress={() => this.click(this.props.data[ i ].id)}>
+                    <ImageBackground style={styles.itemBg} source={{ uri : img }}>
+                        <Text style={styles.title}>{this.props.data[ i ].title}</Text>
+                        <Text style={styles.description}>{this.props.data[ i ].description}</Text>
+                    </ImageBackground>
+                </TouchableOpacity>
             );
         }
         return itemAry;
@@ -32,12 +45,11 @@ export default class LabsHorizontal extends PureComponent {
         return (
             <View>
                 <ScrollView
-                    style={styles.itemBg}
+                    style={styles.bg}
                     showsHorizontalScrollIndicator={false}
-                    horizontal={true}>
-                    {
-                        this.renderItemH()
-                    }
+                    horizontal={true}>{
+                    this.renderItemH()
+                }
                 </ScrollView>
             </View>
         );
@@ -45,16 +57,25 @@ export default class LabsHorizontal extends PureComponent {
 }
 
 const styles = StyleSheet.create({
-    itemBg:{
-        backgroundColor:'white',
-        paddingTop:25,
-        paddingBottom:25,
-        paddingRight:20
+    bg : {
+        backgroundColor : 'white',
+        padding:18,
     },
-    itemStyle : {
-        // 尺寸
+    itemBg : {
+        marginRight : 18,
         width : 300,
         height : 150,
-        marginLeft : 20,
+        justifyContent : 'center',
+        alignItems : 'center',
+        backgroundColor:'#22222222'
+    },
+    title : {
+        color : 'white',
+        fontSize : 15,
+        fontWeight:'bold',
+    },
+    description : {
+        color : 'white',
+        fontSize : 12,
     }
 })

@@ -11,6 +11,7 @@ export default styles = StyleSheet.create({
     container : {
         width : Dimensions.get('window').width,
         backgroundColor : 'white',
+        paddingBottom:15
     }, img : {
         flexDirection : 'row',
         width : Dimensions.get('window').width,

@@ -16,7 +16,7 @@ import {
 import Colors from "./resources/Colors";
 import NewsPage from "./screens/home/news/NewsPage";
 import LabsPage from "./screens/home/labs/LabsPage";
-import TestFetch from "./screens/home/TestFetch";
+import WebViewPage from "./screens/home/WebViewPage";
 
 export default class AppRouter extends PureComponent {
     render() {
@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
         marginTop : 5,
         textAlign : 'center',
         fontSize : 15,
-        fontFamily:'monospace',
-        fontWeight:'100'
+        fontFamily : 'monospace',
+        fontWeight : '100'
     }, tabBarStyle : {
         justifyContent : "center",
         alignItems : "center",
@@ -59,13 +59,15 @@ const styles = StyleSheet.create({
 
 //各个界面
 const scenes = Actions.create(
-    <Scene hideNavBar key="root" tabs
-           tabBarStyle={styles.tabBarStyle}
-           labelStyle={styles.routerFluxLabelStyle}
-           activeTintColor='black'
-           inactiveTintColor={Colors.gray}>
-        <Scene key="NewsPage" title="NEWS" hideNavBar component={NewsPage}/>
-        <Scene key="LabsPage" title="LABS" hideNavBar component={LabsPage}/>
-        <Scene key="TestFetch" title="FETCH" hideNavBar component={TestFetch}/>
+    <Scene hideNavBar key="root">
+        <Scene tabs
+               tabBarStyle={styles.tabBarStyle}
+               labelStyle={styles.routerFluxLabelStyle}
+               activeTintColor='black'
+               inactiveTintColor={Colors.gray}>
+            <Scene key="NewsPage" title="NEWS" hideNavBar component={NewsPage}/>
+            <Scene key="LabsPage" title="LABS" hideNavBar component={LabsPage}/>
+        </Scene>
+        <Scene key="WebViewPage" component={WebViewPage}/>
     </Scene>
 );

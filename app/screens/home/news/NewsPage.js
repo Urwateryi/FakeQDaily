@@ -16,6 +16,7 @@ import Images from "../../../resources/Images";
 import NewHeadline from "./NewHeadline";
 import NewsItemHeader from "./NewsItemHeader";
 import FeedsItem from "./FeedsItem";
+import LabsAds from "../labs/LabsAds";
 
 const datas = [
     {
@@ -38,6 +39,7 @@ export default class NewsPage extends PureComponent {
             <View style={styles.container}>
                 <NewsBanner imgData={datas}/>
                 <FeedsItem/>
+                <LabsAds/>
             </View>
         );
     }

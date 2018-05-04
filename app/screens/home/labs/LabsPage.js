@@ -6,13 +6,14 @@
  */
 
 import React, { PureComponent } from 'react';
-import { ScrollView } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import NetUtil from "../../../utils/NetUtil";
 import Api from "../../../network/Api";
 import LabsItem from "./../labs/LabsItem";
 import Constants from "../../../config/Constants";
 import LabsHorizontal from "./../labs/LabsHorizontal";
 import LabsAds from "./LabsAds";
+import Colors from "../../../resources/Colors";
 
 export default class LabsPage extends PureComponent {
 
@@ -82,18 +83,19 @@ export default class LabsPage extends PureComponent {
      */
     renderItem = () => {
         let itemAry = [];
-        for (let i = 0;
-            i < this.state.feeds.length;
-            i++) {
-            let feedsItem = this.state.feeds[ i ];
-            itemAry.push(
-                <LabsItem key={i} data={feedsItem} type={Constants.item_type_lab}/>
-            );
+        if (this.state.feeds.length>0){
+            for (let i = 0;
+                i < this.state.feeds.length;
+                i++) {
+                let feedsItem = this.state.feeds[ i ];
+                itemAry.push(
+                    <LabsItem key={i} data={feedsItem} type={Constants.item_type_lab}/>
+                );
+            }
+
+            this.renderAd(itemAry);
+            this.renderPaperTopic(itemAry);
         }
-
-        this.renderAd(itemAry);
-        this.renderPaperTopic(itemAry);
-
         return itemAry;
     }
 
@@ -105,24 +107,24 @@ export default class LabsPage extends PureComponent {
      */
     renderAd(itemAry) {
         let itemAd = [];
-        for (let j = 0;
-            j < this.state.feedsAd.length;
-            j++) {
+        if (this.state.feedsAd.length>0){
+            for (let j = 0;
+                j < this.state.feedsAd.length;
+                j++) {
 
-            let adsItem = this.state.feedsAd[ j ];
+                let adsItem = this.state.feedsAd[ j ];
 
-            let insertLocation = adsItem.advertisement.ad_location;
-            let image = adsItem.post.image;
-            let adsUrl = adsItem.advertisement.ad_url;
+                let insertLocation = adsItem.advertisement.ad_location;
+                let image = adsItem.post.image;
+                let adsUrl = adsItem.advertisement.ad_url;
 
-            itemAd.push(
-                <LabsAds key={this.state.feeds.length + j} image={image} url={adsUrl}/>
-            );
+                itemAd.push(
+                    <LabsAds key={this.state.feeds.length + j} image={image} url={adsUrl}/>
+                );
 
-            itemAry.splice(insertLocation, 0, itemAd);
+                itemAry.splice(insertLocation, 0, itemAd);
+            }
         }
-
-        return itemAd;
     }
 
     /**
@@ -134,22 +136,22 @@ export default class LabsPage extends PureComponent {
     renderPaperTopic(itemAry) {
 
         let itemPaper = [];
-        for (let j = 0;
-            j < this.state.paperTopic.length;
-            j++) {
+        if (this.state.paperTopic.length>0){
+            for (let j = 0;
+                j < this.state.paperTopic.length;
+                j++) {
 
-            let paperTopicItem = this.state.paperTopic[ j ];
-            let insertLocation = paperTopicItem.insert_location;
-            let insertContent = paperTopicItem.insert_content;
+                let paperTopicItem = this.state.paperTopic[ j ];
+                let insertLocation = paperTopicItem.insert_location;
+                let insertContent = paperTopicItem.insert_content;
 
-            itemPaper.push(
-                <LabsHorizontal key={this.state.feeds.length +this.state.feedsAd.length+ j} data={insertContent}/>
-            );
+                itemPaper.push(
+                    <LabsHorizontal key={this.state.feeds.length +this.state.feedsAd.length+ j} data={insertContent}/>
+                );
 
-            itemAry.splice(insertLocation, 0, itemPaper);
+                itemAry.splice(insertLocation, 0, itemPaper);
+            }
         }
-
-        return itemPaper;
     }
 
     /**
@@ -160,7 +162,7 @@ export default class LabsPage extends PureComponent {
     render() {
         return (
             <ScrollView
-                style={styles.itemBg}
+                style={styles.container}
                 showsHorizontalScrollIndicator={false}>{
                 this.renderItem()
             }
@@ -168,3 +170,11 @@ export default class LabsPage extends PureComponent {
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container : {
+        flex : 1,
+        flexDirection : 'column',//当前容器使用什么布局
+        backgroundColor : Colors.bg,
+    }
+})

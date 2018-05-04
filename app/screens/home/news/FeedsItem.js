@@ -4,7 +4,7 @@
  * Author: zoe
  * Time: 2018/4/24 0024
  */
-import React,{ PureComponent } from "react";
+import React, { PureComponent } from "react";
 import {
     View,
     Text,
@@ -16,43 +16,50 @@ import ItemMore from "../../../components/ItemMore";
 
 export default class FeedsItem extends PureComponent {
     render() {
+
+        let item=this.props.data;
+
+        let image = item.post.image;
+        let title = item.post.title;
+
         return (
             <View style={styles.container}>
                 <View style={styles.titleView}>
-                    <Text style={styles.title} numberOfLines={2}>
-                        全球头条速递|《外交政策》认为马克龙不是纯粹自由主义者；已知得到的最新消息
+                    <Text style={styles.title} numberOfLines={3}>
+                        {title}
                     </Text>
-                    <ItemMore/>
+                    <ItemMore isShowComment={false} item={item}/>
                 </View>
-                <Image style={styles.img} source={Images.test.test_1}/>
+                <Image style={styles.img} source={{uri:image}}/>
             </View>
         )
     }
 }
 
-const styles=StyleSheet.create({
-    container:{
-        marginTop:10,
-        flexDirection:'row',
-        backgroundColor:'white',
-        height:100
+const styles = StyleSheet.create({
+    container : {
+        marginTop : 5,
+        flexDirection : 'row',
+        backgroundColor : 'white',
     },
-    titleView:{
-        flex:55,
-        alignSelf:'center',
-        justifyContent:'center',
-        alignContent:'center',
-        paddingRight:10
+    titleView : {
+        flex : 55,
+        alignSelf : 'center',
+        justifyContent : 'center',
+        alignContent : 'center',
+        paddingRight : 10
     },
-    title:{
+    title : {
         paddingLeft : 15,
         color : 'black',
         fontSize : 15,
         letterSpacing : 25,
+        lineHeight : 25,
     },
-    img:{
-        flex:45,
-        resizeMode:'center',
-        alignSelf:'center',
+    img : {
+        flex : 45,
+        height : 120,
+        resizeMode : 'cover',
+        alignSelf : 'center',
     },
 })

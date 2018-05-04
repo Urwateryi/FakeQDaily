@@ -7,16 +7,17 @@
 import React, { PureComponent } from 'react';
 import {
     StyleSheet,
-    View,
-    Text,
+    ScrollView,
 } from 'react-native';
+
 import Colors from "../../../resources/Colors";
 import NewsBanner from "./NewsBanner";
 import Images from "../../../resources/Images";
 import NewHeadline from "./NewHeadline";
-import NewsItemHeader from "./NewsItemHeader";
 import FeedsItem from "./FeedsItem";
-import LabsAds from "../labs/LabsAds";
+import Api from "../../../network/Api";
+import NetUtil from "../../../utils/NetUtil";
+import Constants from "../../../config/Constants";
 
 const datas = [
     {
@@ -34,13 +35,147 @@ const datas = [
 ]
 
 export default class NewsPage extends PureComponent {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            // 下拉刷新
+            refreshing : false,
+            loading : false,
+            error : '',
+            last_key : 0,
+            has_more : true,
+            my_subscription_location : 0,
+
+            feedsList : [],
+
+            feeds : [],
+            feedsAd : [],
+            banners : [],
+            bannersAd : [],
+            columns : [],
+            columnsAd : [],
+            headline : [],
+            featuredArticle : [],
+        };
+    }
+
+    componentDidMount() {
+        this.getContent(0)
+    }
+
+    async getContent(last_key) {
+        let params = new Map();
+        if (last_key !== 0) {
+            params.set('last_key', last_key);
+        } else {
+            params = null;
+        }
+
+        console.log('last_key:' + last_key);
+
+        await NetUtil.get(Api.news, params, result => {
+                this.setState({
+                        feeds : this.state.feeds.concat(result.response.feeds),
+                        feedsAd : this.state.feedsAd.concat(result.response.feeds_ad),
+                        banners : this.state.banners.concat(result.response.banners),
+                        bannersAd : this.state.bannersAd.concat(result.response.banners_ad),
+
+                        columns : this.state.columns.concat(result.response.columns),
+                        columnsAd : this.state.columnsAd.concat(result.response.columns_ad),
+
+                        headline : this.state.headline.concat(result.response.headline),
+                        featuredArticle : this.state.featuredArticle.concat(result.response.featured_article),
+
+                        last_key : result.response.last_key,
+                        has_more : result.response.has_more,
+                        my_subscription_location : result.response.my_subscription_location,
+
+                        loading : false,
+                        refreshing : false,
+                    }
+                );
+            },
+            err => {
+                console.log("result is :", err.toString())
+
+                this.setState({
+                    error : err.toString(),
+                    loading : false,
+                    refreshing : false
+                });
+            });
+    }
+
+    renderItem = () => {
+        let itemAry = [];
+        if(this.state.feeds.length>0){
+            for (let i = 0;
+                i < this.state.feeds.length;
+                i++) {
+                let feedsItem = this.state.feeds[ i ];
+                itemAry.push(
+                    <FeedsItem key={i} data={feedsItem}/>
+                );
+            }
+
+            this.renderBanner(itemAry);
+            this.renderHeadline(itemAry);
+        }
+
+        return itemAry;
+    }
+
+    /**
+     * 渲染banner
+     * @param itemAry
+     */
+    renderBanner = (itemAry) => {
+        let itemBanner = [];
+        let banners = this.state.banners;
+
+        let length = banners.length;
+        if (length > 0) {
+            itemBanner.push(
+                <NewsBanner data={banners}/>
+            );
+
+            itemAry.splice(0, 0, itemBanner);
+        }
+    }
+
+    /**
+     * 渲染headline
+     * @param itemAry
+     */
+    renderHeadline(itemAry) {
+        let itemHeadline = [];
+        let headline = this.state.headline;
+
+        let length = headline.length;
+        if (length > 0) {
+            itemHeadline.push(
+                <NewHeadline data={banners}/>
+            );
+
+            itemAry.splice(1, 0, itemHeadline);
+        }
+    }
+
+    renderColumns(itemAry) {
+        console.log("imgData:columns:", this.state.columns);
+    }
+
+    renderFeedsAd(itemAry) {
+        console.log("imgData:feedsAd:", this.state.feedsAd);
+    }
+
     render() {
         return (
-            <View style={styles.container}>
-                <NewsBanner imgData={datas}/>
-                <FeedsItem/>
-                <LabsAds/>
-            </View>
+            <ScrollView style={styles.container}
+                        showsHorizontalScrollIndicator={false}>{
+                this.renderItem()
+            }</ScrollView>
         );
     }
 }
@@ -55,4 +190,4 @@ const styles = StyleSheet.create({
         textAlign : 'center',
         color : Colors.gray,
     }
-})
+});

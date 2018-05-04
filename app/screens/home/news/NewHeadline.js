@@ -28,6 +28,7 @@ class ListItem extends PureComponent {
 }
 
 export default class NewHeadline extends PureComponent {
+
     renderItemTitle() {
         var itemAry = [];
         for (var i = 0;
@@ -41,6 +42,8 @@ export default class NewHeadline extends PureComponent {
     }
 
     render() {
+        let datas=this.props.data;
+
         return (
             <View style={styles.bg}>
                 <View style={{flexDirection:'row',alignItems:'center'}}>

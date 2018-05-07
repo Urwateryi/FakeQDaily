@@ -16,6 +16,7 @@ import Api from "../../../network/Api";
 import NetUtil from "../../../utils/NetUtil";
 import NewsBanner from "./NewsBanner";
 import NewsHeadline from "./NewsHeadline";
+import LabsAds from "../labs/LabsAds";
 
 const MAX_RESULT = 20;//每页最大记录数
 
@@ -82,8 +83,32 @@ export default class NewsPageFlatList extends PureComponent {
                         refreshing : false,
                     }
                 );
+
+                if (this.state.bannersAd.length > 0) {
+
+                }
+
                 if (this.state.headline) {
                     this.state.feeds.splice(0, 0, this.state.headline);
+                }
+
+                if (this.state.feedsAd.length > 0) {
+                    for (let i = 0;
+                        i < this.state.feedsAd.length;
+                        i++) {
+                        let feedsAdItem = this.state.feedsAd[ i ];
+                        let ad_location = feedsAdItem.advertisement.ad_location;
+
+                        this.state.feeds.splice(ad_location, 0, feedsAdItem);
+                    }
+                }
+
+                if (this.state.columns.length > 0) {
+
+                }
+
+                if (this.state.columnsAd.length > 0) {
+
                 }
             },
             err => {
@@ -116,15 +141,40 @@ export default class NewsPageFlatList extends PureComponent {
      * @returns {*}
      */
     renderItem = ({ item, index }) => {
+        let adLocations=[];
+
+        if (this.state.feedsAd.length > 0) {
+            for (let i = 0;
+                i < this.state.feedsAd.length;
+                i++) {
+                let feedsAdItem = this.state.feedsAd[ i ];
+                adLocations.push(feedsAdItem.advertisement.ad_location);
+            }
+        }
+
         if (this.state.headline) {
             if (index === 0) {
                 return (
                     <NewsHeadline data={this.state.headline}/>
                 );
-            } else {
-                return (
-                    <FeedsItem data={item}/>
-                )
+            }else {
+                if(adLocations.length>0){
+                    for (let i=0;i<adLocations.length;i++){
+                        if (index===adLocations[i]){
+                            return(
+                                <LabsAds image={this.state.feedsAd[i].image} url={this.state.feedsAd[i].advertisement.ad_url}/>
+                            )
+                        }else {
+                            return (
+                                <FeedsItem data={item}/>
+                            )
+                        }
+                    }
+                }else {
+                    return (
+                        <FeedsItem data={item}/>
+                    )
+                }
             }
         } else {
             return (

@@ -16,26 +16,27 @@ import styles from "../../../resources/styles/NewsHeadline"
 
 class ListItem extends PureComponent {
     render() {
+        let data=this.props.data;
         return (
             <View style={styles.item}>
                 <Text style={styles.dot}>&bull;</Text>
                 <Text style={styles.title}>
-                    Google净利润大涨73%，但其中一半来自对外投资收益，财报发布后股价略下跌
+                    {data.description}
                 </Text>
             </View>
         )
     }
 }
 
-export default class NewHeadline extends PureComponent {
+export default class NewsHeadline extends PureComponent {
 
-    renderItemTitle() {
-        var itemAry = [];
-        for (var i = 0;
-            i < 3;
+    renderItemTitle(list) {
+        let itemAry=[];
+        for (let i = 0;
+            i < list.length;
             i++) {
             itemAry.push(
-                <ListItem key={i}/>
+                <ListItem key={i} data={list[i]}/>
             );
         }
         return itemAry;
@@ -44,15 +45,18 @@ export default class NewHeadline extends PureComponent {
     render() {
         let datas=this.props.data;
 
+        let name=datas.post.column.name;
+        let list=datas.list;
+
         return (
             <View style={styles.bg}>
                 <View style={{flexDirection:'row',alignItems:'center'}}>
                     <Image style={styles.headImg} source={Images.menu.ic_menu_about}/>
                     <Text style={styles.headTitle}>
-                        大公司头条
+                        {name}
                     </Text>
                 </View>
-                <ScrollView style={{marginTop:10}}>{this.renderItemTitle()}</ScrollView>
+                <ScrollView style={{marginTop:10}}>{this.renderItemTitle(list)}</ScrollView>
                 <View style={{ flexDirection:'row', justifyContent : 'flex-end',paddingRight:10}}>
                     <Text style={styles.checkDetail}>
                         查看详情>>

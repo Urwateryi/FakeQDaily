@@ -13,11 +13,10 @@ import {
 import Colors from "../../../resources/Colors";
 import NewsBanner from "./NewsBanner";
 import Images from "../../../resources/Images";
-import NewHeadline from "./NewHeadline";
+import NewsHeadline from "./NewsHeadline";
 import FeedsItem from "./FeedsItem";
 import Api from "../../../network/Api";
 import NetUtil from "../../../utils/NetUtil";
-import Constants from "../../../config/Constants";
 
 const datas = [
     {
@@ -34,7 +33,7 @@ const datas = [
     }
 ]
 
-export default class NewsPage extends PureComponent {
+export default class NewsPageScrollView extends PureComponent {
 
     constructor(props) {
         super(props);
@@ -155,20 +154,31 @@ export default class NewsPage extends PureComponent {
         let length = headline.length;
         if (length > 0) {
             itemHeadline.push(
-                <NewHeadline data={banners}/>
+                <NewsHeadline data={headline}/>
             );
 
             itemAry.splice(1, 0, itemHeadline);
         }
     }
 
-    renderColumns(itemAry) {
-        console.log("imgData:columns:", this.state.columns);
-    }
-
-    renderFeedsAd(itemAry) {
-        console.log("imgData:feedsAd:", this.state.feedsAd);
-    }
+    // renderColumns(itemAry) {
+    //     console.log("imgData:columns:", this.state.columns);
+    // }
+    //
+    // renderFeedsAd(itemAry) {
+        // console.log("imgData:feedsAd:", this.state.feedsAd);
+        // let itemFeedsAd=[];
+        // let feedsAd=this.state.feedsAd;
+        //
+        // let length=feedsAd.length;
+        // if (length>0){
+            // itemFeedsAd.push(
+            //     <LabsAds image={} url={}/>
+            // );
+        //
+        //     itemAry.splice(3, 0, itemFeedsAd);
+        // }
+    // }
 
     render() {
         return (

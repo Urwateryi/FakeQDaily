@@ -22,8 +22,6 @@ export default class LabsHorizontal extends PureComponent {
     }
 
     renderItemH() {
-        console.log("data:", this.props.data)
-
         let itemAry = [];
         for (let i = 0;
             i < this.props.data.length;
@@ -78,4 +76,4 @@ const styles = StyleSheet.create({
         color : 'white',
         fontSize : 12,
     }
-})
+});

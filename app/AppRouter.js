@@ -14,7 +14,7 @@ import {
     StyleSheet,
 } from 'react-native';
 import Colors from "./resources/Colors";
-import NewsPage from "./screens/home/news/NewsPage";
+import NewsPageFlatList from "./screens/home/news/NewsPageFlatList";
 import LabsPage from "./screens/home/labs/LabsPage";
 import WebViewPage from "./screens/home/WebViewPage";
 
@@ -65,7 +65,7 @@ const scenes = Actions.create(
                labelStyle={styles.routerFluxLabelStyle}
                activeTintColor='black'
                inactiveTintColor={Colors.gray}>
-            <Scene key="NewsPage" title="NEWS" hideNavBar component={NewsPage}/>
+            <Scene key="NewsPage" title="NEWS" hideNavBar component={NewsPageFlatList}/>
             <Scene key="LabsPage" title="LABS" hideNavBar component={LabsPage}/>
         </Scene>
         <Scene key="WebViewPage" component={WebViewPage}/>

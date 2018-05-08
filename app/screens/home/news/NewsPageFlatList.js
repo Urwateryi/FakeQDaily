@@ -112,7 +112,7 @@ export default class NewsPageFlatList extends PureComponent {
                 }
             },
             err => {
-                console.log("result is :", err.toString());
+                console.log("err is :", err.toString());
 
                 this.setState({
                     error : err.toString(),

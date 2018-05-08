@@ -9,6 +9,8 @@
 export default {
     item_type_lab:'item_type_labs',
     item_type_new:'item_type_news',
+
+    divideLineWidth: 0.7,
 }
 
 //声明变量 方法2

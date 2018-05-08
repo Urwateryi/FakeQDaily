@@ -17,6 +17,8 @@ import Colors from "./resources/Colors";
 import NewsPageFlatList from "./screens/home/news/NewsPageFlatList";
 import LabsPage from "./screens/home/labs/LabsPage";
 import WebViewPage from "./screens/home/WebViewPage";
+import NewsDetailPage from "./screens/detail/NewsDetailPage";
+import CommentPage from "./screens/comment/CommentPage";
 
 export default class AppRouter extends PureComponent {
     render() {
@@ -69,5 +71,7 @@ const scenes = Actions.create(
             <Scene key="LabsPage" title="LABS" hideNavBar component={LabsPage}/>
         </Scene>
         <Scene key="WebViewPage" component={WebViewPage}/>
+        <Scene key="NewsDetailPage" component={NewsDetailPage}/>
+        <Scene key="CommentPage" component={CommentPage}/>
     </Scene>
 );

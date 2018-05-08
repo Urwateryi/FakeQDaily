@@ -36,6 +36,9 @@ export default {
 
         ic_join_news:require('./imgs/ic_menu_home.png'),
         ic_ad:require('./imgs/ic_ad.png'),
+
+        ic_praise_normal:require('./imgs/ic_praise_normal.png'),
+        ic_praise_press:require('./imgs/ic_praise_press.png'),
     },
     test:{
         beauty:require('./imgs/test_bg.jpg'),

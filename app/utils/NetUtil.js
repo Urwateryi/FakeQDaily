@@ -7,6 +7,29 @@
 export default class NetUtil {
 
     /**
+     *get请求
+     *url :请求地址
+     *callback:回调函数
+     */
+    static get(url, params, success, failure) {
+
+        console.log("请求url:", url);
+        console.log("参数：", params);
+
+        fetch(url, {
+            method : 'GET',
+            body : params
+        })
+            .then(this.checkStatus)
+            .then((response) => response.json())
+            .then((json) => success(json))
+            .catch((error) => {
+                console.log("请求url:" + url + "\n出错日志：" + error);
+                failure(error);
+            });
+    }
+
+    /**
      *url :请求地址
      *data:参数
      *callback:回调函数
@@ -38,7 +61,8 @@ export default class NetUtil {
      */
     static postJson(url, params, success, failure) {
 
-        console.log("请求url:" + url + "\n参数：" + JSON.stringify(params));
+        console.log("请求url:", url);
+        console.log("参数：", JSON.stringify(this.strMapToObj(params)));
 
         const requestOptional = {
             method : 'POST',
@@ -47,7 +71,7 @@ export default class NetUtil {
                 //json形式
                 'Content-Type' : 'application/json'
             },
-            body : JSON.stringify(params)
+            body : JSON.stringify(this.strMapToObj(params))
         };
 
         fetch(url, requestOptional)
@@ -60,26 +84,44 @@ export default class NetUtil {
             });
     }
 
-    //get请求
     /**
-     *url :请求地址
-     *callback:回调函数
+     * 字符转换为JSON
      */
-    static get(url, params, success, failure) {
+    static strToJson(data) {
+        return JSON.parse(data);
+    }
 
-        console.log("请求url:" + url + "\n参数：" + params);
+    /**
+     * JSON转换为字符
+     */
+    static jsonToStr(data) {
+        return JSON.stringify(data);
+    }
 
-        fetch(url, {
-            method : 'GET',
-            body : params
-        })
-            .then(this.checkStatus)
-            .then((response) => response.json())
-            .then((json) => success(json))
-            .catch((error) => {
-                console.log("请求url:" + url + "\n出错日志：" + error);
-                failure(error);
-            });
+    /**
+     * map转换为json
+     */
+    static mapToJson(map) {
+        return JSON.stringify(JsonUtil.strMapToObj(map));
+    }
+
+    /**
+     * json转换为map
+     */
+    static jsonToMap(jsonStr) {
+        return JsonUtil.objToStrMap(JSON.parse(jsonStr));
+    }
+
+    /**
+     * map转化为对象（map所有键都是字符串，可以将其转换为对象）
+     */
+    static strMapToObj(strMap) {
+        let obj = Object.create(null);
+        for (let [ k, v ] of
+            strMap) {
+            obj[ k ] = v;
+        }
+        return obj;
     }
 
     /**

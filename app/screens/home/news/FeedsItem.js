@@ -10,29 +10,40 @@ import {
     Text,
     StyleSheet,
     Image,
+    TouchableOpacity
 } from 'react-native';
-import Images from "../../../resources/Images";
+import { Actions } from "react-native-router-flux";
 import ItemMore from "../../../components/ItemMore";
 
 export default class FeedsItem extends PureComponent {
     render() {
 
-        let item=this.props.data;
+        let item = this.props.data;
 
         let image = item.post.image;
         let title = item.post.title;
+        let id=item.post.id;
 
         return (
-            <View style={styles.container}>
+
+            <TouchableOpacity
+                activeOpacity={0.5}
+                onPress={()=>this.onItemClick(id)}
+                style={styles.container}>
+
                 <View style={styles.titleView}>
                     <Text style={styles.title} numberOfLines={3}>
                         {title}
                     </Text>
                     <ItemMore isShowComment={false} item={item}/>
                 </View>
-                <Image style={styles.img} source={{uri:image}}/>
-            </View>
+                <Image style={styles.img} source={{ uri : image }}/>
+            </TouchableOpacity>
         )
+    }
+
+    onItemClick(id){
+        Actions.push('NewsDetailPage',{id:id})
     }
 }
 

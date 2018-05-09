@@ -62,7 +62,7 @@ export default class CommentItem extends PureComponent {
     render() {
         let item = this.props.data;
 
-        let content = item.content.trim();
+        let commentContent = item.content.trim();
         let time = TimeUtil.formatDate(item.publish_time, "MM-dd hh:mm");
 
         this.setState({
@@ -103,7 +103,7 @@ export default class CommentItem extends PureComponent {
                         </TouchableOpacity>
                     </View>
 
-                    <Text style={styles.content}>{content}</Text>
+                    <Text style={styles.content}>{commentContent}</Text>
                 </View>
             </TouchableOpacity>
         );
@@ -160,5 +160,5 @@ const styles = StyleSheet.create({
         width : 14,
         height : 14,
         marginLeft : 5,
-    }, inputHint : {}, input : {}
+    }
 });

@@ -8,11 +8,14 @@ import React, { PureComponent } from 'react';
 import {
     StyleSheet,
     ScrollView,
-    WebView,
+    View,
 } from 'react-native'
 import NetUtil from "../../utils/NetUtil";
 import Api from "../../network/Api";
 import CommentItem from "./CommentItem";
+import CommentInput from "./CommentInput";
+import Constants from "../../config/Constants";
+import Colors from "../../resources/Colors";
 
 export default class CommentPage extends PureComponent {
 
@@ -51,10 +54,16 @@ export default class CommentPage extends PureComponent {
 
     render() {
         return (
-            <ScrollView style={styles.container}
-                        showsHorizontalScrollIndicator={false}>{
-                this.renderItem()
-            }</ScrollView>
+
+            <View style={styles.container}>
+                <ScrollView showsHorizontalScrollIndicator={false}
+                            style={{ marginBottom : 51 }}>{
+                    this.renderItem()
+                }</ScrollView>
+
+                <CommentInput/>
+            </View>
+
         );
     }
 
@@ -109,3 +118,10 @@ export default class CommentPage extends PureComponent {
             })
     }
 }
+
+const styles = StyleSheet.create({
+    container : {
+        flex : 1,
+        backgroundColor : 'white',
+    }
+});

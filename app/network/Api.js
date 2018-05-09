@@ -1,31 +1,40 @@
 /**
- * Description:
+ * Description:Api
  *
  * Author: zoe
  * Time: 2018/4/27 0027
  */
 
-    //服务器地址
+//服务器地址
 const host = 'http://app3.qdaily.com/app3/';
 
 export default {
 
-    //首页
+    /**
+     * 首页
+     * GET请求
+     */
     news : host + 'homes/index/0.json?',
 
-    //lab页
+    /**
+     * Label页
+     * GET 请求
+     */
     papers : host + 'papers/index/0.json',
 
-    //新闻详情页
+    /**
+     * 新闻详情页
+     * GET 请求
+     */
     newsDetail : host + 'articles/detail/{id}.json',
 
     /**
      * 点赞
      * POST请求
      *
-     * genre
+     * genre 点赞：1，取消点赞：2
      * id
-     * praise_type
+     * praise_type :评论：comment，新闻：article
      */
     createPraise : host + 'praises/create_praise',
 
@@ -41,7 +50,8 @@ export default {
     createComment : host + 'comments/create_comment',
 
     /**
-     * 获取评论列表
+     * 获取新闻评论列表
+     * GET请求
      *
      * id:文章id
      */

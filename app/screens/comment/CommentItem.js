@@ -17,14 +17,45 @@ import Colors from "../../resources/Colors";
 import Images from "../../resources/Images";
 import TimeUtil from "../../utils/TimeUtil";
 import Constants from "../../config/Constants";
+import Api from "../../network/Api";
+import NetUtil from "../../utils/NetUtil";
 
 export default class CommentItem extends PureComponent {
 
-    createPraise() {
-        ToastAndroid.show("点赞", ToastAndroid.SHORT)
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            praiseCount : 0,
+            praiseStatus : false,
+        };
     }
 
-    createComment(){
+    async createPraise(item) {
+
+        let params = new Map();
+
+        params.set('id', item.id);
+        params.set('genre', (this.state.praiseStatus ? 2 : 1) + '');
+        params.set('praise_type', 'comment');
+
+        await NetUtil.postJson(Api.createPraise,
+            params,
+            result => {
+
+                console.log("result is praise_count:", result.response.praise_count);
+                console.log("result is target_id:", result.response.target_id);
+
+                this.setState({
+                    praiseCount : result.response.praise_count,
+                    praiseStatus : !this.state.praiseStatus
+                });
+            }, err => {
+                console.log("err is :", err.toString());
+            })
+    }
+
+    createComment() {
         ToastAndroid.show("点击了评论", ToastAndroid.SHORT)
     }
 
@@ -33,7 +64,10 @@ export default class CommentItem extends PureComponent {
 
         let content = item.content.trim();
         let time = TimeUtil.formatDate(item.publish_time, "MM-dd hh:mm");
-        let praise_count = item.praise_count;
+
+        this.setState({
+            praiseCount : item.praise_count,
+        });
 
         let author = item.author;
         let head = author.avatar;
@@ -42,32 +76,36 @@ export default class CommentItem extends PureComponent {
         let child_comments = item.child_comments;
 
         return (
-            <View style={styles.container}>
+
+            <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.container}
+                onPress={() => this.createComment()}>
+
                 <Image style={styles.head} source={{ uri : head }}/>
 
                 <View style={styles.containerRight}>
-
                     <View style={styles.headContainer}>
 
-                        <View style={{flexDirection : 'row'}}>
+                        <View style={styles.nameTime}>
                             <Text style={styles.name}>{name}</Text>
                             <Text style={styles.time}>{time}</Text>
                         </View>
 
                         <TouchableOpacity
                             activeOpacity={0.7}
-                            style={{flexDirection : 'row'}}
-                            onPress={() => this.createPraise()}>
+                            style={styles.praise}
+                            onPress={() => this.createPraise(item)}>
 
-                            <Text style={styles.praiseTxt}>{praise_count}</Text>
-                            <Image style={styles.praiseImg} source={Images.item.ic_praise_normal}/>
+                            <Text style={this.state.praiseStatus ? [ styles.praiseTxt, { color : Colors.primary } ] : styles.praiseTxt}>{this.state.praiseCount}</Text>
+                            <Image style={styles.praiseImg} source={this.state.praiseStatus ? Images.item.ic_praise_press : Images.item.ic_praise_normal}/>
 
                         </TouchableOpacity>
                     </View>
 
-                    <Text style={styles.content} onPress={() => this.createComment()}>{content}</Text>
+                    <Text style={styles.content}>{content}</Text>
                 </View>
-            </View>
+            </TouchableOpacity>
         );
     }
 }
@@ -81,15 +119,19 @@ const styles = StyleSheet.create({
         borderBottomWidth : Constants.divideLineWidth
     }, containerRight : {
         marginLeft : 10,
-        flexDirection : 'column',//当前容器使用什么布局
+        flexDirection : 'column',
     }, headContainer : {
-        flex : 1,
         flexDirection : 'row',
     }, head : {
         width : 30,
         height : 30,
         borderRadius : 30,
         justifyContent : 'flex-start',
+    }, nameTime : {
+        flex : 1,
+        flexDirection : 'row',
+        alignItems : 'center',
+        justifyContent : 'flex-start'
     }, name : {
         fontSize : 14,
         color : Colors.black,
@@ -98,7 +140,7 @@ const styles = StyleSheet.create({
     }, content : {
         fontSize : 12,
         marginTop : 10,
-        width : Dimensions.get('window').width-60,
+        width : Dimensions.get('window').width - 60,
         marginBottom : 10,
         textAlign : 'left',
         color : Colors.black,
@@ -107,14 +149,16 @@ const styles = StyleSheet.create({
         marginLeft : 10,
         alignSelf : 'center',
         color : Colors.light_gray,
+    }, praise : {
+        flexDirection : 'row',
+        alignItems : 'center',
+        justifyContent : 'flex-end'
     }, praiseTxt : {
         fontSize : 14,
-        alignSelf : 'center',
         color : Colors.light_gray,
     }, praiseImg : {
         width : 14,
         height : 14,
         marginLeft : 5,
-        alignSelf : 'center',
     }, inputHint : {}, input : {}
 });

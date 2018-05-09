@@ -35,9 +35,11 @@ export default class CommentPage extends PureComponent {
     renderItem = () => {
         let itemAry = [];
 
-        if (this.state.comments.length>0){
-            for (let i=0;i<this.state.comments.length;i++){
-                let commentItem=this.state.comments[i];
+        if (this.state.comments.length > 0) {
+            for (let i = 0;
+                i < this.state.comments.length;
+                i++) {
+                let commentItem = this.state.comments[ i ];
                 itemAry.push(
                     <CommentItem key={commentItem.id} data={commentItem}/>
                 );
@@ -73,12 +75,12 @@ export default class CommentPage extends PureComponent {
 
                 this.setState({
 
-                    comments:result.response.comments,
-                    topComments:result.response.top_comments,
+                    comments : result.response.comments,
+                    topComments : result.response.top_comments,
 
-                    commentCount:result.response.comment_count,
-                    lastKey:result.response.last_key,
-                    hasMore:result.response.has_more
+                    commentCount : result.response.comment_count,
+                    lastKey : result.response.last_key,
+                    hasMore : result.response.has_more
                 });
             }, err => {
                 console.log("err is :", err.toString());

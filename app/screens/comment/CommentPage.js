@@ -95,28 +95,6 @@ export default class CommentPage extends PureComponent {
                 console.log("err is :", err.toString());
             })
     }
-
-    /**
-     * 评论
-     * @returns {Promise<void>}
-     */
-    async createComment() {
-
-        let params = new Map();
-        params.set('comment_type', comment_type);
-        params.set('content', content);
-        params.set('id', id);
-        params.set('parent_id', parent_id);
-
-        await NetUtil.postJson(Api.createComment,
-            params,
-            result => {
-                console.log("result is :", result.response);
-
-            }, err => {
-                console.log("err is :", err.toString());
-            })
-    }
 }
 
 const styles = StyleSheet.create({

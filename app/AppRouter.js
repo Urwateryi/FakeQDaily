@@ -22,6 +22,7 @@ import CommentPage from "./screens/comment/CommentPage";
 
 import { Provider } from 'mobx-react';
 import commentStore from './stores/CommentStore'
+import LoginPage from "./screens/setting/login/LoginPage";
 
 export default class AppRouter extends PureComponent {
     render() {
@@ -78,5 +79,6 @@ const scenes = Actions.create(
         <Scene key="WebViewPage" component={WebViewPage}/>
         <Scene key="NewsDetailPage" component={NewsDetailPage}/>
         <Scene key="CommentPage" component={CommentPage}/>
+        <Scene key="LoginPage" component={LoginPage}/>
     </Scene>
 );

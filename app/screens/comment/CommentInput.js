@@ -22,6 +22,7 @@ import Api from "../../network/Api";
 import NetUtil from "../../utils/NetUtil";
 
 import { observer, inject } from "mobx-react";
+import { Actions } from "react-native-router-flux";
 
 @inject('commentStore')
 @observer
@@ -35,29 +36,32 @@ export default class CommentInput extends PureComponent {
         };
     }
 
-    async submit() {
-        let content=this.state.input;
-        let id=this.props.mobx.id;
-        let parent_id=this.props.mobx.parent_id;
-        let type=this.props.mobx.type;
+     submit() {
+        Actions.push('LoginPage');
 
-        let params = new Map();
-        params.set('comment_type', type);
-        params.set('content', content);
-        params.set('id', id);
-        params.set('parent_id', parent_id);
-
-        await NetUtil.postJson(Api.createComment,
-            params,
-            result => {
-                console.log("result is :", result);
-
-                this.setState({
-
-                });
-            }, err => {
-                console.log("err is :", err.toString());
-            })
+        //
+        // let content=this.state.input;
+        // let id=this.props.mobx.id;
+        // let parent_id=this.props.mobx.parent_id;
+        // let type=this.props.mobx.type;
+        //
+        // let params = new Map();
+        // params.set('comment_type', type);
+        // params.set('content', content);
+        // params.set('id', id);
+        // params.set('parent_id', parent_id);
+        //
+        // await NetUtil.postJson(Api.createComment,
+        //     params,
+        //     result => {
+        //         console.log("result is :", result);
+        //
+        //         this.setState({
+        //
+        //         });
+        //     }, err => {
+        //         console.log("err is :", err.toString());
+        //     })
     }
 
     render() {

@@ -118,7 +118,7 @@ export default class NewsPageScrollView extends PureComponent {
                 );
             }
 
-            this.renderBanner(itemAry);
+            // this.renderBanner(itemAry);
             this.renderHeadline(itemAry);
         }
 

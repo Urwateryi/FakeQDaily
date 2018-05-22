@@ -193,7 +193,7 @@ export default class NewsPageFlatList extends PureComponent {
                 keyExtractor={this.keyExtractor}
                 renderItem={this.renderItem}
 
-                ListHeaderComponent={this.renderHeader(this.state.banners)}
+                // ListHeaderComponent={this.renderHeader(this.state.banners)}
 
                 getItemLayout={(data, index) => (
                     { length : 130, offset : 130 * index, index }

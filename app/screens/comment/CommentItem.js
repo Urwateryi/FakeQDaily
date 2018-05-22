@@ -20,6 +20,7 @@ import Constants from "../../config/Constants";
 import Api from "../../network/Api";
 import NetUtil from "../../utils/NetUtil";
 
+
 export default class CommentItem extends PureComponent {
 
     constructor(props) {
@@ -55,9 +56,15 @@ export default class CommentItem extends PureComponent {
             })
     }
 
-    createComment() {
-        ToastAndroid.show("点击了评论", ToastAndroid.SHORT)
-    }
+    createComment(item){
+        let author = item.author;
+        let name = author.name;
+
+        this.props.mobx.setPlaceHoder('回复'+name+'：');
+        this.props.mobx.setType(item.type);
+        this.props.mobx.setId(item.type_id);
+        this.props.mobx.setParentId(item.id);
+    };
 
     render() {
         let item = this.props.data;
@@ -80,7 +87,7 @@ export default class CommentItem extends PureComponent {
             <TouchableOpacity
                 activeOpacity={0.7}
                 style={styles.container}
-                onPress={() => this.createComment()}>
+                onPress={() => this.createComment(item)}>
 
                 <Image style={styles.head} source={{ uri : head }}/>
 

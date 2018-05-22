@@ -20,10 +20,15 @@ import WebViewPage from "./screens/home/WebViewPage";
 import NewsDetailPage from "./screens/detail/NewsDetailPage";
 import CommentPage from "./screens/comment/CommentPage";
 
+import { Provider } from 'mobx-react';
+import commentStore from './stores/CommentStore'
+
 export default class AppRouter extends PureComponent {
     render() {
         return (
-            <Router getSceneStyle={getSceneStyle} scenes={scenes}/>
+            <Provider commentStore={commentStore}>
+                <Router getSceneStyle={getSceneStyle} scenes={scenes}/>
+            </Provider>
         );
     }
 }

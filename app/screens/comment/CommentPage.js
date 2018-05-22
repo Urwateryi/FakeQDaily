@@ -17,6 +17,10 @@ import CommentInput from "./CommentInput";
 import Constants from "../../config/Constants";
 import Colors from "../../resources/Colors";
 
+import { inject, observer } from "mobx-react";
+
+@inject('commentStore')
+@observer
 export default class CommentPage extends PureComponent {
 
     constructor(props) {
@@ -44,7 +48,7 @@ export default class CommentPage extends PureComponent {
                 i++) {
                 let commentItem = this.state.comments[ i ];
                 itemAry.push(
-                    <CommentItem key={commentItem.id} data={commentItem}/>
+                    <CommentItem key={commentItem.id} data={commentItem} mobx={this.props.commentStore}/>
                 );
             }
         }
@@ -61,7 +65,7 @@ export default class CommentPage extends PureComponent {
                     this.renderItem()
                 }</ScrollView>
 
-                <CommentInput/>
+                <CommentInput mobx={this.props.commentStore}/>
             </View>
 
         );

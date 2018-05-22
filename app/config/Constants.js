@@ -11,6 +11,11 @@ export default {
     item_type_new:'item_type_news',
 
     divideLineWidth: 0.7,
+
+    INPUTING:'inputing',
+    INPUTED:'inputed',
+    EMPTY:'empty',
+    REBACK:'reback',
 }
 
 //声明变量 方法2

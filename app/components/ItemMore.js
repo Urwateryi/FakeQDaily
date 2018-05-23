@@ -82,27 +82,29 @@ export default class ItemMore extends PureComponent {
     /**
      * 点赞
      */
-    async changePraise(item) {
+     changePraise(item) {
 
-        let datatype = item.post.datatype;
-        let genre = item.post.genre;
-        let id = item.post.id;
+        Actions.push('LoginPage')
 
-        let params = new Map();
-        params.set('genre', genre + "");
-        params.set('id', id);
-        params.set('praise_type', datatype);
-
-        await NetUtil.postJson(Api.createPraise,
-            params,
-            result => {
-                console.log("result is :", result.response);
-                this.setState({
-                    praiseCount : result.response.praise_count,
-                    praiseStatus : !this.state.praiseStatus,
-                });
-            }, err => {
-                console.log("err is :", err.toString());
-            })
+        // let datatype = item.post.datatype;
+        // let genre = item.post.genre;
+        // let id = item.post.id;
+        //
+        // let params = new Map();
+        // params.set('genre', genre + "");
+        // params.set('id', id);
+        // params.set('praise_type', datatype);
+        //
+        // await NetUtil.postJson(Api.createPraise,
+        //     params,
+        //     result => {
+        //         console.log("result is :", result.response);
+        //         this.setState({
+        //             praiseCount : result.response.praise_count,
+        //             praiseStatus : !this.state.praiseStatus,
+        //         });
+        //     }, err => {
+        //         console.log("err is :", err.toString());
+        //     })
     }
 }

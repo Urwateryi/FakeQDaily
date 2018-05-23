@@ -36,32 +36,42 @@ export default class CommentInput extends PureComponent {
         };
     }
 
-     submit() {
-        Actions.push('LoginPage');
+    async submit() {
 
-        //
-        // let content=this.state.input;
-        // let id=this.props.mobx.id;
-        // let parent_id=this.props.mobx.parent_id;
-        // let type=this.props.mobx.type;
-        //
-        // let params = new Map();
-        // params.set('comment_type', type);
-        // params.set('content', content);
-        // params.set('id', id);
-        // params.set('parent_id', parent_id);
-        //
-        // await NetUtil.postJson(Api.createComment,
-        //     params,
-        //     result => {
-        //         console.log("result is :", result);
-        //
-        //         this.setState({
-        //
-        //         });
-        //     }, err => {
-        //         console.log("err is :", err.toString());
-        //     })
+        console.log("id：", this.props.mobx.id);
+        console.log("parent_id：", this.props.mobx.parent_id);
+        console.log("type：", this.props.mobx.type);
+
+        let id=this.props.mobx.id;
+        let parent_id=this.props.mobx.parent_id;
+        let type=this.props.mobx.type;
+
+        let params = new Map();
+        params.set('comment_type', type);
+        if (this.state.input!==null) {
+            params.set('content', this.state.input);
+        }
+        if (id!==0){
+            params.set('id', id);
+        }
+        if (parent_id!==0){
+            params.set('parent_id', parent_id);
+        }
+
+        console.log("params：", params);
+
+        await NetUtil.postJson(Api.createComment,
+            params,
+            result => {
+                console.log("result is :", result);
+
+                this.props.mobx.reset();
+                this.setState({
+
+                });
+            }, err => {
+                console.log("err is :", err.toString());
+            })
     }
 
     render() {

@@ -21,13 +21,14 @@ import NewsDetailPage from "./screens/detail/NewsDetailPage";
 import CommentPage from "./screens/comment/CommentPage";
 
 import { Provider } from 'mobx-react';
-import commentStore from './stores/CommentStore'
+import commentStore from './stores/CommentStore';
+import loginStore from './stores/LoginStore';
 import LoginPage from "./screens/setting/login/LoginPage";
 
 export default class AppRouter extends PureComponent {
     render() {
         return (
-            <Provider commentStore={commentStore}>
+            <Provider commentStore={commentStore} loginStore={loginStore}>
                 <Router getSceneStyle={getSceneStyle} scenes={scenes}/>
             </Provider>
         );

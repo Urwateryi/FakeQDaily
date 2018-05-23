@@ -16,6 +16,12 @@ export default {
     INPUTED:'inputed',
     EMPTY:'empty',
     REBACK:'reback',
+
+    LOGIN_PHONE:'phone',
+    LOGIN_EMAIL:'email',
+
+    LOGIN_REMEMBER:1,
+    LOGIN_NOTREMEMBER:0,
 }
 
 //声明变量 方法2

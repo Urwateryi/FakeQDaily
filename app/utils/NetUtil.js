@@ -35,13 +35,25 @@ export default class NetUtil {
      *callback:回调函数
      */
     static postForm(url, params, success, failure) {
+
+        console.log("请求url:", url);
+
+        //拼接参数
+        let newParams='';
+        for (let [ key, value ] of
+            params) {
+            newParams+=(key + "=" + value + '&')
+        }
+
+        console.log("参数：", newParams);
+
         const requestOptional = {
             method : 'POST',
             headers : {
                 'Accept' : 'application/json',
                 'Content-Type' : 'application/x-www-form-urlencoded'
             },
-            body : 'data=' + params + ''
+            body :newParams
         };
 
         fetch(url, requestOptional)

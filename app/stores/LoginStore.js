@@ -7,32 +7,30 @@
 import { observable, action } from 'mobx';
 
 class LoginStore {
-    //账号
+
     @observable
-    account = '';
+    id = 0;
 
-    //密码
     @observable
-    password = '';
+    user_id = 0;
 
-    //token
     @observable
-    token = '';
+    _alias = '';
 
-    @action
-    setAccount(newAccount) {
-        this.account = newAccount;
-    }
+    @observable
+    username = '';
 
-    @action
-    setPassword(newPassword) {
-        this.password = newPassword;
-    }
+    @observable
+    face = '';
 
-    @action
-    setToken(newToken) {
-        this.token = newToken;
-    }
+    @observable
+    description = '';
+
+    @observable
+    email = '';
+
+    @observable
+    phone = '';
 }
 
 export default new LoginStore();

@@ -31,11 +31,12 @@ export default class CommentPage extends PureComponent {
             topComments : [],
             commentCount : 0,
             lastKey : 0,
-            hasMore : true
+            hasMore : true,
         };
     }
 
     componentDidMount() {
+        this.props.commentStore.reset();
         this.getCommentList();
     }
 

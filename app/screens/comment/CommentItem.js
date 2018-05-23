@@ -60,10 +60,7 @@ export default class CommentItem extends PureComponent {
         let author = item.author;
         let name = author.name;
 
-        this.props.mobx.setPlaceHoder('回复'+name+'：');
-        this.props.mobx.setType(item.type);
-        this.props.mobx.setId(item.type_id);
-        this.props.mobx.setParentId(item.id);
+        this.props.mobx.placeholder=('回复'+name+'：');
     };
 
     render() {
@@ -81,6 +78,11 @@ export default class CommentItem extends PureComponent {
         let name = author.name;
 
         let child_comments = item.child_comments;
+
+        this.props.mobx.type=item.type;
+
+        this.props.mobx.id=item.type_id;
+        this.props.mobx.parent_id=item.id;
 
         return (
 

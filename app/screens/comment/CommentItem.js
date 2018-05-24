@@ -20,7 +20,6 @@ import Constants from "../../config/Constants";
 import Api from "../../network/Api";
 import NetUtil from "../../utils/NetUtil";
 
-
 export default class CommentItem extends PureComponent {
 
     constructor(props) {
@@ -60,7 +59,10 @@ export default class CommentItem extends PureComponent {
         let author = item.author;
         let name = author.name;
 
+        this.props.mobx.parent_id=item.id;
         this.props.mobx.placeholder=('回复'+name+'：');
+
+        console.log('placeholder1:',this.props.mobx.placeholder);
     };
 
     render() {
@@ -76,13 +78,6 @@ export default class CommentItem extends PureComponent {
         let author = item.author;
         let head = author.avatar;
         let name = author.name;
-
-        let child_comments = item.child_comments;
-
-        this.props.mobx.type=item.type;
-
-        this.props.mobx.id=item.type_id;
-        this.props.mobx.parent_id=item.id;
 
         return (
 

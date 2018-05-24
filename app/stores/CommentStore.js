@@ -5,7 +5,7 @@
  * Time: 2018/5/22 0022
  */
 
-import { observable, action, useStrict } from 'mobx';
+import { observable, action } from 'mobx';
 import Constants from "../config/Constants";
 
 class CommentStore {

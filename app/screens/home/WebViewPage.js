@@ -1,5 +1,5 @@
 
-import React, {PureComponent} from 'react';
+import React, {Component} from 'react';
 import {
     StyleSheet,
     Platform,
@@ -9,8 +9,12 @@ import {
     TextInput,
     Dimensions
 } from 'react-native'
-
-export default class WebViewPage extends PureComponent {
+import { YellowBox } from 'react-native';
+YellowBox.ignoreWarnings([
+    'Warning: componentWillMount is deprecated',
+    'Warning: componentWillReceiveProps is deprecated',
+]);
+export default class WebViewPage extends Component {
 
     render() {
 

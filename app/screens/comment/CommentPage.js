@@ -4,7 +4,7 @@
  * Author: zoe
  * Time: 2018/5/8 0008
  */
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import {
     StyleSheet,
     ScrollView,
@@ -14,14 +14,18 @@ import NetUtil from "../../utils/NetUtil";
 import Api from "../../network/Api";
 import CommentItem from "./CommentItem";
 import CommentInput from "./CommentInput";
-import Constants from "../../config/Constants";
-import Colors from "../../resources/Colors";
 
 import { inject, observer } from "mobx-react";
 
+import { YellowBox } from 'react-native';
+YellowBox.ignoreWarnings([
+    'Warning: componentWillMount is deprecated',
+    'Warning: componentWillReceiveProps is deprecated',
+]);
+
 @inject('commentStore')
 @observer
-export default class CommentPage extends PureComponent {
+export default class CommentPage extends Component {
 
     constructor(props) {
         super(props);
@@ -37,6 +41,10 @@ export default class CommentPage extends PureComponent {
 
     componentDidMount() {
         this.props.commentStore.reset();
+        this.props.commentStore.id = this.props.id;
+
+        this.props.commentStore.type='article';
+
         this.getCommentList();
     }
 
@@ -58,6 +66,8 @@ export default class CommentPage extends PureComponent {
     };
 
     render() {
+        console.log('placeholder page:', this.props.commentStore.placeholder);
+
         return (
 
             <View style={styles.container}>

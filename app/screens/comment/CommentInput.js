@@ -9,52 +9,43 @@ import {
     StyleSheet,
     TextInput,
     View,
-    ToastAndroid,
     TouchableOpacity,
     Text, Dimensions
 } from 'react-native'
 
 import Colors from "../../resources/Colors";
-import Images from "../../resources/Images";
-import TimeUtil from "../../utils/TimeUtil";
 import Constants from "../../config/Constants";
 import Api from "../../network/Api";
 import NetUtil from "../../utils/NetUtil";
 
-import { observer, inject } from "mobx-react";
-import { Actions } from "react-native-router-flux";
-
-@inject('commentStore')
-@observer
 export default class CommentInput extends PureComponent {
 
     //构造函数
     constructor(props) {
         super(props);
+
+        console.log('placeholder input:', this.props.mobx.placeholder);
+
         this.state = {
-            input: '',//初始值
+            input : '',//初始值
         };
     }
 
     async submit() {
 
-        console.log("id：", this.props.mobx.id);
-        console.log("parent_id：", this.props.mobx.parent_id);
-        console.log("type：", this.props.mobx.type);
-
-        let id=this.props.mobx.id;
-        let parent_id=this.props.mobx.parent_id;
-        let type=this.props.mobx.type;
+        let id = this.props.mobx.id;
+        let parent_id = this.props.mobx.parent_id;
+        let type = this.props.mobx.type;
 
         let params = new Map();
         params.set('comment_type', type);
-        if (this.state.input!==null) {
+        if (this.state.input !== null) {
             params.set('content', this.state.input);
         }
-        if (id!==0){
+        if (id !== 0) {
             params.set('id', id);
         }
-        if (parent_id!==0){
+        if (parent_id !== 0) {
             params.set('parent_id', parent_id);
         }
 
@@ -66,15 +57,16 @@ export default class CommentInput extends PureComponent {
                 console.log("result is :", result);
 
                 this.props.mobx.reset();
-                this.setState({
-
-                });
+                this.setState({});
             }, err => {
                 console.log("err is :", err.toString());
             })
     }
 
     render() {
+
+        console.log('placeholder2:', this.props.mobx.placeholder);
+
         return (
             <View style={styles.container}>
 
@@ -89,9 +81,9 @@ export default class CommentInput extends PureComponent {
                     editable={true}
                     maxLength={20}
                     style={styles.input}
-                    onChangeText={(event) => this.setState({input: event})}
-                    onEndEditing={(event) =>  this.setState({input:event})}
-                    onSubmitEditing={(event) =>  this.setState({input:event})}
+                    onChangeText={(event) => this.setState({ input : event })}
+                    onEndEditing={(event) => this.setState({ input : event })}
+                    onSubmitEditing={(event) => this.setState({ input : event })}
                 />
 
                 <TouchableOpacity

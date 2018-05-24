@@ -5,7 +5,7 @@
  * Time: 2018/4/27 0027
  */
 
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { ScrollView, StyleSheet } from "react-native";
 import NetUtil from "../../../utils/NetUtil";
 import Api from "../../../network/Api";
@@ -15,7 +15,13 @@ import LabsHorizontal from "./../labs/LabsHorizontal";
 import LabsAds from "./LabsAds";
 import Colors from "../../../resources/Colors";
 
-export default class LabsPage extends PureComponent {
+import { YellowBox } from 'react-native';
+YellowBox.ignoreWarnings([
+    'Warning: componentWillMount is deprecated',
+    'Warning: componentWillReceiveProps is deprecated',
+]);
+
+export default class LabsPage extends Component {
 
     //构造函数
     constructor(props) {

@@ -4,7 +4,7 @@
  * Author: zoe
  * Time: 2018/4/20 0020
  */
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import {
     Router,
     Actions,
@@ -25,7 +25,13 @@ import commentStore from './stores/CommentStore';
 import loginStore from './stores/LoginStore';
 import LoginPage from "./screens/setting/login/LoginPage";
 
-export default class AppRouter extends PureComponent {
+import { YellowBox } from 'react-native';
+YellowBox.ignoreWarnings([
+    'Warning: componentWillMount is deprecated',
+    'Warning: componentWillReceiveProps is deprecated',
+]);
+
+export default class AppRouter extends Component {
     render() {
         return (
             <Provider commentStore={commentStore} loginStore={loginStore}>

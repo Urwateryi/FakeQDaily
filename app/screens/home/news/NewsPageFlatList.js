@@ -4,7 +4,7 @@
  * Author: zoe
  * Time: 2018/4/20 0020
  */
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import {
     StyleSheet,
     FlatList,
@@ -20,7 +20,13 @@ import LabsAds from "../labs/LabsAds";
 
 const MAX_RESULT = 20;//每页最大记录数
 
-export default class NewsPageFlatList extends PureComponent {
+import { YellowBox } from 'react-native';
+YellowBox.ignoreWarnings([
+    'Warning: componentWillMount is deprecated',
+    'Warning: componentWillReceiveProps is deprecated',
+]);
+
+export default class NewsPageFlatList extends Component {
 
     constructor(props) {
         super(props);

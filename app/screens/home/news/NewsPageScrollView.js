@@ -4,7 +4,7 @@
  * Author: zoe
  * Time: 2018/4/20 0020
  */
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import {
     StyleSheet,
     ScrollView,
@@ -17,6 +17,12 @@ import NewsHeadline from "./NewsHeadline";
 import FeedsItem from "./FeedsItem";
 import Api from "../../../network/Api";
 import NetUtil from "../../../utils/NetUtil";
+
+import { YellowBox } from 'react-native';
+YellowBox.ignoreWarnings([
+    'Warning: componentWillMount is deprecated',
+    'Warning: componentWillReceiveProps is deprecated',
+]);
 
 const datas = [
     {
@@ -33,7 +39,7 @@ const datas = [
     }
 ]
 
-export default class NewsPageScrollView extends PureComponent {
+export default class NewsPageScrollView extends Component {
 
     constructor(props) {
         super(props);

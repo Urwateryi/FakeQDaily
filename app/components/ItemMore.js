@@ -29,16 +29,19 @@ export default class ItemMore extends PureComponent {
         };
     }
 
+    componentWillMount() {
+        let item = this.props.item;
+        this.setState({
+            praiseCount : item.post.praise_count
+        });
+    }
+    
     render() {
         //是否显示评论模块
         let isShowComment = this.props.isShowComment;
         let item = this.props.item;
 
         let commentCount = item.post.comment_count;
-
-        this.setState({
-            praiseCount : item.post.praise_count
-        });
 
         let categoryTitle = item.post.category.title;
         let publishTime = TimeUtil.formatDate(item.post.publish_time, "yyyy-MM-dd hh:mm");

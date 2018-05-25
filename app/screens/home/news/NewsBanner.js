@@ -59,9 +59,9 @@ export default class NewsBanner extends PureComponent {
 
     }
 
-    componentWillUnMount() {
-        clearInterval(this.interval);
-    }
+    // componentWillUnMount() {
+    //     clearInterval(this.interval);
+    // }
 
     /**
      * 演染图片
@@ -73,7 +73,7 @@ export default class NewsBanner extends PureComponent {
     renderAllImage(datas) {
 
         let imgArr = [];
-        let length=datas.length;
+        let length = datas.length;
 
         for (let i = 0;
             i < length;

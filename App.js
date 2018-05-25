@@ -4,7 +4,7 @@
  * Author: zoe
  * Time: 2018/4/20 0020
  */
-import React, { PureComponent} from 'react';
+import React, { PureComponent } from 'react';
 
 import SplashModule from "./app/modules/SplashModule";
 import AppRouter from "./app/AppRouter";

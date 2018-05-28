@@ -65,15 +65,18 @@ export default class CommentItem extends PureComponent {
         console.log('placeholder1:',this.props.mobx.placeholder);
     };
 
+    componentWillMount() {
+        let item = this.props.data;
+        this.setState({
+            praiseCount : item.praise_count,
+        });
+    }
+
     render() {
         let item = this.props.data;
 
         let commentContent = item.content.trim();
         let time = TimeUtil.formatDate(item.publish_time, "MM-dd hh:mm");
-
-        this.setState({
-            praiseCount : item.praise_count,
-        });
 
         let author = item.author;
         let head = author.avatar;

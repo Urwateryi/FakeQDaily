@@ -49,5 +49,6 @@ export default {
     all:{
         ic_back:require('./imgs/ic_back.png'),
         ic_net_error:require('./imgs/ic_net_error.png'),
+        ic_no_data:require('./imgs/ic_no_data.png'),
     }
 }

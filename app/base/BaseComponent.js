@@ -25,7 +25,7 @@ export default class BaseComponent extends Component {
             isShowRightImgLeft : false,//title右部左边图片按钮，是否显示
             isShowRightImgRight : false,//title右部左边图片按钮，是否显示
             isShowRightBtn : false,//title右部按钮，是否显示
-            isShowLeftBtn : false,//title左部按钮，是否显示
+            isShowLeftBtn : true,//title左部按钮，是否显示
 
             centerTxt : '',//中间title
             leftImg : Images.all.ic_back,//title左边的图片
@@ -169,7 +169,7 @@ export default class BaseComponent extends Component {
     };
 
     renderRightButton() {
-        console.log('txtLeft：', this.state.isShowRightTxtRight);
+        console.log('txtLeft：'+ this.state.isShowRightTxtRight);
         return (
             <View style={styles.view_right}>
                 {this.state.isShowRightTxtLeft ?
@@ -225,13 +225,17 @@ export default class BaseComponent extends Component {
      * 渲染title
      * @returns {*}
      */
-    renderTitle () {
+    renderTitle() {
+        console.log('left: renderTitle '+this.state.isShowLeftBtn);
         return (
             <View style={styles.title}>
-                {this.state.isShowLeftBtn ?
-                    <TouchableOpacity onPress={() => this.onClickLeftImg()}>
-                        <Image style={styles.left_img} source={Images.item.ic_praise_normal}/>
-                    </TouchableOpacity> : null}
+                {
+                    this.state.isShowLeftBtn ?
+                        (<TouchableOpacity onPress={() => this.onClickLeftImg()}>
+                            <Image style={styles.left_img} source={Images.item.ic_praise_normal}/>
+                        </TouchableOpacity>) : null
+                }
+
                 <Text style={styles.txt}>{this.state.centerTxt}</Text>
                 {this.renderRightButton()}
             </View>
@@ -245,6 +249,8 @@ export default class BaseComponent extends Component {
     };
 
     render() {
+        console.log('left: render '+this.state.isShowLeftBtn);
+
         return (
             <View style={[ styles.container, this.props.style ]}>
                 {this.renderTitle()}

@@ -18,6 +18,7 @@ import CommentInput from "./CommentInput";
 import { inject, observer } from "mobx-react";
 
 import { YellowBox } from 'react-native';
+import BaseComponent from "../../base/BaseComponent";
 YellowBox.ignoreWarnings([
     'Warning: componentWillMount is deprecated',
     'Warning: componentWillReceiveProps is deprecated',
@@ -25,7 +26,7 @@ YellowBox.ignoreWarnings([
 
 @inject('commentStore')
 @observer
-export default class CommentPage extends Component {
+export default class CommentPage extends BaseComponent {
 
     constructor(props) {
         super(props);
@@ -39,12 +40,17 @@ export default class CommentPage extends Component {
         };
     }
 
-    componentDidMount() {
+    initTitle(){
+        this.setTitleCenter('评论列表');
+    }
+
+    initData(){
         this.props.commentStore.reset();
         this.props.commentStore.id = this.props.id;
 
         this.props.commentStore.type='article';
 
+        this.showLoad();
         this.getCommentList();
     }
 
@@ -65,7 +71,7 @@ export default class CommentPage extends Component {
         return itemAry;
     };
 
-    render() {
+    renderComponent() {
         console.log('placeholder page:', this.props.commentStore.placeholder);
 
         return (
@@ -91,6 +97,7 @@ export default class CommentPage extends Component {
         await NetUtil.get(Api.getCommentList.replace("{id}", this.props.id),
             null,
             result => {
+                this.hideLoad();
 
                 console.log("result is :", result.response.comments);
                 console.log("result is commentCount:", result.response.comment_count);
@@ -107,6 +114,8 @@ export default class CommentPage extends Component {
                     hasMore : result.response.has_more
                 });
             }, err => {
+                this.hideLoad();
+
                 console.log("err is :", err.toString());
             })
     }

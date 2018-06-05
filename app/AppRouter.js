@@ -23,6 +23,8 @@ import CommentPage from "./screens/comment/CommentPage";
 import { Provider } from 'mobx-react';
 import commentStore from './stores/CommentStore';
 import loginStore from './stores/LoginStore';
+import pageLoadStore from './stores/PageLoadStore';
+
 import LoginPage from "./screens/setting/login/LoginPage";
 
 import { YellowBox } from 'react-native';
@@ -34,7 +36,7 @@ YellowBox.ignoreWarnings([
 export default class AppRouter extends Component {
     render() {
         return (
-            <Provider commentStore={commentStore} loginStore={loginStore}>
+            <Provider commentStore={commentStore} loginStore={loginStore} pageLoadStore={pageLoadStore}>
                 <Router getSceneStyle={getSceneStyle} scenes={scenes}/>
             </Provider>
         );

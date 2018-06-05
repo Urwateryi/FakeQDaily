@@ -47,6 +47,7 @@ export default {
         test_3:require('./imgs/test_3.jpg'),
     },
     all:{
-        ic_back:require('./imgs/ic_back_black.png'),
+        ic_back:require('./imgs/ic_back.png'),
+        ic_net_error:require('./imgs/ic_net_error.png'),
     }
 }

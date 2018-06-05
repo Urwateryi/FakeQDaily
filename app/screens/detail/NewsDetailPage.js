@@ -14,11 +14,12 @@ import {
 import NetUtil from "../../utils/NetUtil";
 import Api from "../../network/Api";
 import { YellowBox } from 'react-native';
+import BaseComponent from "../../base/BaseComponent";
 YellowBox.ignoreWarnings([
     'Warning: componentWillMount is deprecated',
     'Warning: componentWillReceiveProps is deprecated',
 ]);
-export default class NewsDetailPage extends Component {
+export default class NewsDetailPage extends BaseComponent {
 
     constructor(props) {
         super(props);
@@ -30,7 +31,8 @@ export default class NewsDetailPage extends Component {
         };
     }
 
-    componentDidMount() {
+    initData(){
+        this.showLoad();
         this.getDetail(this.state.id);
     }
 
@@ -42,7 +44,7 @@ export default class NewsDetailPage extends Component {
 
         await NetUtil.get(url, null, result => {
                 console.log("result is :", result);
-
+                this.hideLoad();
                 this.setState({
                         body : result.response.article.body,
                     }
@@ -51,6 +53,7 @@ export default class NewsDetailPage extends Component {
                 console.log("body is :", this.state.body);
             },
             err => {
+                this.hideLoad();
                 console.log("err is :", err.toString());
 
                 this.setState({
